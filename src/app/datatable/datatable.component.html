@@ -1,0 +1,36 @@
+<table class="w-full table-fixed border border-zinc-200 bg-white">
+  <thead>
+    <tr>
+      @for (header of headers(); track $index) {
+      <th class="text-center border border-zinc-200">
+        {{ header.title }}
+      </th>
+      }
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (row of data(); track $index) {
+    <tr class="border border-zinc-200 hover:bg-zinc-50">
+      @for (header of headers(); track $index) {
+      <td
+        class="border border-zinc-200"
+        [ngClass]="getRowAlignmentClass(header.alignment)"
+      >
+        <ng-container
+          *ngTemplateOutlet="
+            getRowTemplate(header.name) || default;
+            context: { row }
+          "
+        >
+        </ng-container>
+
+        <ng-template #default>
+          {{ getRowValue(row, header.name) }}
+        </ng-template>
+      </td>
+      }
+    </tr>
+    }
+  </tbody>
+</table>
