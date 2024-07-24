@@ -1,7 +1,11 @@
 <div class="w-full h-auto min-h-dvh bg-gray-100 p-4">
   <app-datatable [data]="userList" [headers]="headers">
-    <ng-template appDatatableRow row-name="soyad">
-      <h1>Soyad</h1>
+    <ng-template appDatatableRow row-name="ad" let-row>
+      {{ row.tc_no }}
+    </ng-template>
+
+    <ng-template appDatatableRow row-name="soyad" let-row>
+      <h1>EMRE</h1>
     </ng-template>
   </app-datatable>
 </div>

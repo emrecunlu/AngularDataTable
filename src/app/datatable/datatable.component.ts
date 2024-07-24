@@ -25,21 +25,15 @@ export class DatatableComponent<T> implements AfterContentInit {
   data = input.required<T[]>();
   headers = input.required<DatatableHeader[]>();
 
-  @ContentChildren(DatatableRowDirective, {
-    read: TemplateRef,
-    descendants: true,
-  })
+  @ContentChildren(DatatableRowDirective)
   rows!: QueryList<DatatableRowDirective>;
 
-  ngAfterContentInit() {
-    this.rows.forEach((row) => {
-      /* BURADA DIRECTİVE'DE TANIMLADIĞIMIZ ROW-NAME'E ULAŞAMIYORUM... */
-      console.log(row);
-    });
-  }
+  ngAfterContentInit() {}
 
   getRowTemplate(name: string) {
-    return this.rows.find((x) => x.rowName() === name)?.template || null;
+    const rowTemplate = this.rows.find((row) => row.rowName() === name);
+
+    return rowTemplate ? rowTemplate.templateRef : null;
   }
 
   getRowValue(row: any, name: string) {

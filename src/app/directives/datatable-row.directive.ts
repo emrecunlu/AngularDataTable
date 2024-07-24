@@ -7,5 +7,5 @@ import { Directive, input, TemplateRef } from '@angular/core';
 export class DatatableRowDirective {
   rowName = input.required<string>({ alias: 'row-name' });
 
-  constructor(public template: TemplateRef<any>) {}
+  constructor(public templateRef: TemplateRef<any>) {}
 }
